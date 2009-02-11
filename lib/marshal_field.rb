@@ -5,6 +5,10 @@ module MarshalField
     other_mod.class_eval { include InstanceMethods }
   end
 
+  def self.included(other_mod)
+    extended(other_mod)
+  end
+
   module ClassMethods
     def marshal_field(attr, field)
       define_method attr do
