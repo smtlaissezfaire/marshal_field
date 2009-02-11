@@ -1,5 +1,11 @@
 # MarshalField
 module MarshalField
+  def self.extended(other_mod)
+    other_mod.class_eval do
+      include InstanceMethods
+    end
+  end
+
   def marshal_field(attr, field)
     define_method attr do
       value = instance_variable_get("@#{attr}")
@@ -10,8 +16,10 @@ module MarshalField
       write_attribute(field, Marshal.dump(value))
       instance_variable_set("@#{field}", value)
     end
+  end
 
-    define_method :load_marshable_field do |field|
+  module InstanceMethods
+    def load_marshable_field(field)
       field_value = read_attribute(field)
 
       if field_value && !field_value.blank?
