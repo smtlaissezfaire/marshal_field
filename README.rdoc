@@ -28,4 +28,11 @@ Install it in vendor/plugins:
   user.my_field #=> [1,2,3]
 
 
-Copyright (c) 2009 [name of plugin creator], released under the MIT license
+== Credits
+
+Copyright (c) by Scott Taylor <scott@railsnewbie.com>, 2009.
+Sponsored by Eastmedia (http://eastmedia.com/).
+
+== License
+
+Dual licensed under the MIT & GPL licenses.
