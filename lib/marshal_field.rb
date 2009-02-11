@@ -23,13 +23,17 @@ module MarshalField
       end
 
       define_method "#{attr}=" do |value|
-        write_attribute(field, Base64.encode64(Marshal.dump(value)))
+        write_attribute(field, dump_marshable_field(value))
         instance_variable_set("@#{field}", value)
       end
     end
   end
 
   module InstanceMethods
+    def dump_marshable_field(value)
+      Base64.encode64(Marshal.dump(value))
+    end
+
     def load_marshable_field(field)
       field_value = read_attribute(field)
 
