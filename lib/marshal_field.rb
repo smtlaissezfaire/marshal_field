@@ -1,4 +1,9 @@
 module MarshalField
+  MAJOR = 1
+  MINOR = 0
+  TINY  = 0
+  VERSION = "#{MAJOR}.#{MINOR}.#{TINY}"
+  
   def self.extended(other_mod)
     other_mod.extend ClassMethods
     other_mod.class_eval { include InstanceMethods }
