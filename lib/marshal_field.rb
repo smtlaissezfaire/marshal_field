@@ -1,20 +1,21 @@
 # MarshalField
 module MarshalField
   def self.extended(other_mod)
-    other_mod.class_eval do
-      include InstanceMethods
-    end
+    other_mod.extend ClassMethods
+    other_mod.class_eval { include InstanceMethods }
   end
 
-  def marshal_field(attr, field)
-    define_method attr do
-      value = instance_variable_get("@#{attr}")
-      value ||= load_marshable_field(field)
-    end
+  module ClassMethods
+    def marshal_field(attr, field)
+      define_method attr do
+        value = instance_variable_get("@#{attr}")
+        value ||= load_marshable_field(field)
+      end
 
-    define_method "#{attr}=" do |value|
-      write_attribute(field, Marshal.dump(value))
-      instance_variable_set("@#{field}", value)
+      define_method "#{attr}=" do |value|
+        write_attribute(field, Marshal.dump(value))
+        instance_variable_set("@#{field}", value)
+      end
     end
   end
 
