@@ -11,27 +11,28 @@ Install it in vendor/plugins:
 
 == Usage
 
-1. Add a text field to your table:
+- Add a text field to your table:
 
-  add_column :my_table, :marshalled_foo, :text
+    add_column :my_table, :marshalled_foo, :text
 
-2. Add the marshaled field:
+- Add the marshal_field declaration:
 
-  Class User < ActiveRecord::Base
-    marshal_field :my_field, :marshalled_foo
-  end
+    Class User < ActiveRecord::Base
+      marshal_field :my_field, :marshalled_foo
+    end
 
-3. Use the accessor like a typical accessor:
+- Use the accessor like a typical accessor:
 
-  user = User.new
-  user.my_field = [1,2,3]
-  user.my_field #=> [1,2,3]
+    user = User.new
+    user.my_field = [1,2,3]
+    user.my_field #=> [1,2,3]
 
 
 == Credits
 
-Copyright (c) by Scott Taylor <scott@railsnewbie.com>, 2009.
-Sponsored by Eastmedia (http://eastmedia.com/).
+Copyright (c) 2009 by Scott Taylor mailto:scott@railsnewbie.com
+
+Sponsored by Eastmedia link:http://eastmedia.com
 
 == License
 
