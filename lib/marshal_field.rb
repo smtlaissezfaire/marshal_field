@@ -1,4 +1,3 @@
-# MarshalField
 module MarshalField
   def self.extended(other_mod)
     other_mod.extend ClassMethods
