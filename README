@@ -1,13 +1,31 @@
-MarshalField
-============
+= MarshalField
 
-Introduction goes here.
+== Installation
+
+Install it in vendor/plugins:
+
+  <braid add / git clone / git submodule> \
+    git://github.com/smtlaissezfaire/marshal_field.git \
+    vendor/plugins/marshal_field
 
 
-Example
-=======
+== Usage
 
-Example goes here.
+1. Add a text field to your table:
+
+  add_column :my_table, :marshalled_foo, :text
+
+2. Add the marshaled field:
+
+  Class User < ActiveRecord::Base
+    marshal_field :my_field, :marshalled_foo
+  end
+
+3. Use the accessor like a typical accessor:
+
+  user = User.new
+  user.my_field = [1,2,3]
+  user.my_field #=> [1,2,3]
 
 
 Copyright (c) 2009 [name of plugin creator], released under the MIT license
