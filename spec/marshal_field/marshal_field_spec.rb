@@ -29,12 +29,12 @@ describe "Marshaling a field" do
       end
 
       it "should be [1] for the marshal'ed array of string '1'" do
-        @user.marshaled_ids = Marshal.dump([1])
+        @user.marshaled_ids = Base64.encode64(Marshal.dump([1]))
         @user.ids.should == [1]
       end
 
       it "should be [1,2] for the marshal'ed array of 1,2" do
-        @user.marshaled_ids = Marshal.dump([1,2])
+        @user.marshaled_ids = Base64.encode64(Marshal.dump([1,2]))
         @user.ids.should == [1,2]
       end
 
@@ -52,7 +52,7 @@ describe "Marshaling a field" do
 
       it "should marshal the submission ids" do
         @user.ids = [1,2,3]
-        @user.marshaled_ids.should == Marshal.dump([1,2,3])
+        @user.marshaled_ids.should == Base64.encode64(Marshal.dump([1,2,3]))
       end
     end
 

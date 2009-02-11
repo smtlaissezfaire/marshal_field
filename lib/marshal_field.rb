@@ -1,3 +1,5 @@
+require "base64"
+
 module MarshalField
   MAJOR = 1
   MINOR = 0
@@ -21,7 +23,7 @@ module MarshalField
       end
 
       define_method "#{attr}=" do |value|
-        write_attribute(field, Marshal.dump(value))
+        write_attribute(field, Base64.encode64(Marshal.dump(value)))
         instance_variable_set("@#{field}", value)
       end
     end
@@ -32,7 +34,7 @@ module MarshalField
       field_value = read_attribute(field)
 
       if field_value && !field_value.blank?
-        Marshal.load(read_attribute(field))
+        Marshal.load(Base64.decode64(read_attribute(field)))
       else
         nil
       end
